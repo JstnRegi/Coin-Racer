@@ -28,6 +28,10 @@ var player2 = new Player(player2Keys.jKey, player2Keys.iKey, player2Keys.kKey, p
                         'http://orig11.deviantart.net/81b5/f/2012/035/4/b/running_luigi__icon__by_thelombax51-d4oox27.gif');
 var p2Movement = player2.movementKeys;
 
+//calls and initiates playermovement
+movement();
+
+
 function Track(playerId) {
     this.divs = 100;
     this.columns = 20;
@@ -86,15 +90,14 @@ function Enemy(position, img) {
 
 function movement(){
     $(window).on('keypress', function handleClick(e) {
-        function playerMovement (player, pmovement, track) {
+        function playerMovement (player, playerstring, pmovement, track) {
             //move right pressing the correct key
             if (e.which === pmovement.right
                 && (player.placement % track.columns !== 0)) {
                 player.placement++;
+                playerImg(playerstring, player.character, player.placement, -1);
                 console.log(player1.placement);
                 //console.log(player2.placement);
-                //addImg2(counter2);
-                //remImg2(counter2 - 1);
 
             }
             //move left pressing the correct key
@@ -103,34 +106,34 @@ function movement(){
                 && (player.placement !== (1 + (track.columns * 2)))
                 && (player.placement !== (1 + (track.columns * 3)))
                 && (player.placement !== (1 + (track.columns * 4)))) {
-                player.placement--;
-                console.log(player1.placement);
-                //console.log(player2.placement);
-                //addImg2(counter2);
-                //remImg2(counter2 + 1);
+                    player.placement--;
+                    playerImg(playerstring, player.character, player.placement, 1);
+                    console.log(player1.placement);
+                    //console.log(player2.placement);
+
             }
             //move down pressing the correct key
             if (e.which === pmovement.down && (player.placement < track.lastRow)) {
                 player.placement += track.columns;
+                playerImg(playerstring, player.character, player.placement, (-1*(track.columns)));
                 console.log(player1.placement);
                 //console.log(player2.placement);
-                //addImg2(counter2);
-                //remImg2(counter2 - rows);
+
             }
             //move up pressing the correct key
             if (e.which === pmovement.up && (player.placement !== 1)
                 && (player.placement > track.columns)) {
                 player.placement -= track.columns;
+                playerImg(playerstring, player.character, player.placement, track.columns);
                 console.log(player1.placement);
                 //console.log(player2.placement);
-                //addImg2(counter2);
-                //remImg2(counter2 + rows);
+
             }
         }
         //calls and activates player movements
-        playerMovement(player1, p1Movement, player1Track);
-        playerMovement(player2, p2Movement, player2Track);
-        
+        playerMovement(player1, 'player1', p1Movement, player1Track);
+        playerMovement(player2, 'player2', p2Movement, player2Track);
+
         //finish line
         if ((player1.placement === player1Track.finishLine) && (play === 1)) {
             window.location.replace("player1Win.html");
@@ -140,4 +143,9 @@ function movement(){
         }
     });
 }
-movement();
+
+//adds and removes the character image of the character
+function playerImg(player, character , placement, remove) {
+    $('div#' + player + '.gameboard div:nth-child(' + placement + ')').css("content", "url(" + character + ")");
+    $('div#' + player + '.gameboard div:nth-child(' + (placement + remove) + ')').css("content", "");
+}
