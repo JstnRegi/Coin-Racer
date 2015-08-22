@@ -1,0 +1,100 @@
+h1#main {
+    text-align: center;
+}
+
+h1#instruc {
+    margin-left: 100px;
+    text-align: center;
+}
+
+.wrapper {
+    width: 500px;
+    height: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 100px;
+}
+.gameboard {
+    width: 550px;
+    height:100px;
+    border:3px solid white;
+    z-index: 1;
+    margin-bottom: 50px;
+}
+.gameboard div {
+    width: 25px;
+    height: 25px;
+    float: left;
+    display: inline;
+    border: 1px solid black;
+}
+
+div.top {
+    border-top: 1px solid black;
+}
+
+div.bot {
+    border-bottom: 1px solid black;
+}
+
+div.left {
+    border-left: 1px solid black;
+}
+
+div.right {
+    border-right: 1px solid black;
+}
+
+/*.gameboard#player1 div:nth-child(1) {
+    background-color: purple;
+}
+
+.gameboard#player2 div:nth-child(1) {
+    background-color: blue;
+}*/
+
+.gameboard#player1 div:nth-child(60) {
+    /*background-color: black;*/
+    content: url('http://orig11.deviantart.net/75bd/f/2013/034/d/d/princess_peach_sprite_by_peachkirbycutie-d5tqjs7.gif');
+}
+
+.gameboard#player2 div:nth-child(60) {
+    /*background-color: black;*/
+    content: url('http://orig11.deviantart.net/75bd/f/2013/034/d/d/princess_peach_sprite_by_peachkirbycutie-d5tqjs7.gif');
+}
+
+.button {
+    background-color:white;
+    width: 160px;
+    margin:0 auto;
+}
+.updown {
+    border-top: 1px solid;
+    border-bottom: 1px solid;
+}
+.leftright {
+    border-left: 1px solid;
+    border-right: 1px solid;
+}
+
+body div.instructions {
+    text-align: center;
+    width: 400px;
+    height: 30px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+body div.player1 {
+    display: block;
+    width: 200px;
+    margin: auto;
+    float: left;
+}
+
+body div.player2 {
+    display: block;
+    width: 200px;
+    margin: auto;
+    float: left;
+}
