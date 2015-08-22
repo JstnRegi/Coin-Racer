@@ -130,7 +130,11 @@ function movement(){
         //calls and activates player movements
         playerMovement(player1, p1Movement, player1Track);
         playerMovement(player2, p2Movement, player2Track);
+        
         //finish line
+        if ((player1.placement === player1Track.finishLine) && (play === 1)) {
+            window.location.replace("player1Win.html");
+        }
         if ((player2.placement === player2Track.finishLine) && (play === 1)) {
             window.location.replace("player2Win.html");
         }
