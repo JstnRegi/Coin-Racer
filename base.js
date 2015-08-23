@@ -20,6 +20,17 @@ var player2Keys = {
     jKey: 106
 };
 
+var characters = {
+    goomba: '"http://www.nesmaps.com/maps/SuperMarioBrothers/sprites/LittleGoomba.gif"' + ' width="16"' + ' height="16"',
+    koopa: '"http://files.gamebanana.com/img/ico/sprays/parakoopamediumani_2.gif"' + ' width="28"' + ' height="25"',
+    thwomp: '"http://www.snesmaps.com/maps/SuperMarioWorld/sprites/ThwompAngry.png"' + ' width="18"' + ' height="18"',
+    boo: '"http://www.snesmaps.com/maps/SuperMarioWorld/sprites/BooBuddy3L.gif"' + ' width="15"' + ' height="15"',
+    mario: 'http://i.imgur.com/YnxVNmG.gif',
+    luigi: 'http://orig11.deviantart.net/81b5/f/2012/035/4/b/running_luigi__icon__by_thelombax51-d4oox27.gif',
+    bill: 'http://www.snesmaps.com/maps/SuperMarioWorld/sprites/BulletBillL.png' + ' width="20' + ' height="20"'
+};
+var enemies = [ characters.goomba, characters.koopa, characters.thwomp, characters.boo];
+
 //player tracks
 var player1Track = new Track('#player1');
 var player2Track = new Track('#player2');
@@ -35,15 +46,34 @@ var player2 = new Player(player2Keys.jKey, player2Keys.iKey, player2Keys.kKey, p
 var p2Movement = player2.movementKeys;
 
 //enemies
-var enemy1 = new Enemy(3, speed.medium, 'http://files.gamebanana.com/img/ico/sprays/parakoopamediumani_2.gif' + ' width="28"' + ' height="25"',
-                        83);
-var enemy2 = new Enemy(21, speed.slow, '"http://www.nesmaps.com/maps/SuperMarioBrothers/sprites/LittleGoomba.gif"' + ' width="16"' + ' height="16"',
-                        27);
+var enemy1 = new Enemy(2, speed.medium, characters.goomba, 42, 'vertical');
+var enemy2 = new Enemy(82, speed.slow + 40, characters.goomba, 87, 'horizontal');
+var enemy3 = new Enemy(51, speed.medium, characters.boo, 91, 'vertical');
+var enemy4 = new Enemy(26, speed.fast, characters.thwomp, 33, 'horizontal');
+var enemy5 = new Enemy(19, speed.fast, characters.thwomp, 99, 'vertical');
+var enemy6 = new Enemy(74, speed.slow, characters.koopa, 78, 'horizontal');
+var enemy7 = new Enemy(20, speed.fast, characters.bill, 1, 'bill');
 
 //calls and initiates playermovement
 movement();
-enemyMove(enemy1, 'vertical', 'player1');
-enemyMove(enemy2, 'horizontal', 'player1');
+enemyMove(enemy1, 'player1');
+enemyMove(enemy2, 'player1');
+enemyMove(enemy3, 'player1');
+enemyMove(enemy4, 'player1');
+enemyMove(enemy5, 'player1');
+enemyMove(enemy6, 'player1');
+enemyMove(enemy7, 'player1');
+//random variables to choose from
+//I didnt know that random variables are saved in that point in time. And if called again
+//it's the same variable, it's the same thing
+var randos = {
+        one: Math.floor((Math.random() * 4) + 1),
+        two: Math.floor((Math.random() * 4) + 1),
+        three: Math.floor((Math.random() * 4) + 1),
+        four: Math.floor((Math.random() * 4) + 1),
+        five: Math.floor((Math.random() * 4) + 1),
+        six: Math.floor((Math.random() * 4) + 1)
+};
 
 function Track(playerId) {
     this.divs = 100;
@@ -84,7 +114,7 @@ function Player(leftKey, upKey, downKey, rightKey, img) {
     this.character = img;
 }
 
-function Enemy(position, speed, img, end) {
+function Enemy(position, speed, img, end, moveStyle) {
     this.position = position;
     this.speed = speed;
     this.moveRight = function() {
@@ -101,7 +131,9 @@ function Enemy(position, speed, img, end) {
     };
     this.character = img;
     this.end = end;
+    this.moveStyle = moveStyle;
 }
+
 
 function movement(){
     $(window).on('keypress', function handleClick(e) {
@@ -170,14 +202,14 @@ function enemyImg(player, character, placement, remove) {
     $('div#' + player + '.gameboard div:nth-child(' + (placement + remove) + ')').empty('<img>');
 }
 
-function enemyMove(enemy, movestyle, playerstring) {
+function enemyMove(enemy, playerstring) {
     var start = enemy.position;
-    if(movestyle === 'vertical') {
+    if(enemy.moveStyle === 'vertical') {
         function enemyDown() {
             setTimeout(function () {
                 //dead(enemyMove1);
                 if (enemy.position < enemy.end) {
-                    enemy.position += player1Track.columns;
+                    enemy.moveDown(player1Track.columns);
                     console.log(enemy.position);
                     enemyImg(playerstring, enemy.character, enemy.position, (-1*(player1Track.columns)));
                     enemyDown();
@@ -192,7 +224,7 @@ function enemyMove(enemy, movestyle, playerstring) {
             setTimeout(function () {
                 //dead(enemyMove1);
                 if (start < enemy.position) {
-                    enemy.position -= player1Track.columns;
+                    enemy.moveUp(player1Track.columns);
                     console.log(enemy.position);
                     enemyImg(playerstring, enemy.character, enemy.position, player1Track.columns);
                     //enemyImg1(enemyMove1, (-1*(rows)), enemyPics[rando1]);
@@ -207,12 +239,12 @@ function enemyMove(enemy, movestyle, playerstring) {
         }
         enemyDown();
     }
-    if(movestyle === 'horizontal') {
+    if(enemy.moveStyle === 'horizontal') {
         function enemyRight() {
             setTimeout(function () {
                 //dead(enemyMove6);
                 if (enemy.position < enemy.end) {
-                    enemy.position++;
+                    enemy.moveRight();
                     console.log(enemy.position);
                     enemyImg(playerstring, enemy.character, enemy.position, -1);
                     //enemyImg1(enemyMove6, 1, enemyPics[rando6]);
@@ -229,11 +261,9 @@ function enemyMove(enemy, movestyle, playerstring) {
             setTimeout(function () {
                 //dead(enemyMove6);
                 if (start < enemy.position) {
-                    enemy.position--;
+                    enemy.moveLeft();
                     console.log(enemy.position);
                     enemyImg(playerstring, enemy.character, enemy.position, 1);
-                    //enemyImg1(enemyMove6, (-1), enemyPics[rando6]);
-                    //enemyImg2(enemyMove6, (-1), enemyPics[rando6]);
                     enemyLeft();
                 }
                 else {
@@ -243,4 +273,25 @@ function enemyMove(enemy, movestyle, playerstring) {
         }
         enemyRight();
     }
+    //function for bill to fly by
+    if(enemy.moveStyle === 'bill') {
+        function bulletBill() {
+            setTimeout(function () {
+                //dead(enemyMove6);
+                if (enemy.position >= enemy.end) {
+                    enemy.position--;
+                    console.log(enemy.position);
+                    enemyImg(playerstring, enemy.character, enemy.position, 1);
+                    bulletBill();
+                }
+            }, enemy.speed);
+        }
+        setInterval( function() {
+            bulletBill();
+            enemy.position = 20;
+        }, 5000);
+    }
+
 }
+
+
