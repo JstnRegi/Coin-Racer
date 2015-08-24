@@ -16,7 +16,6 @@ var keys = {
     }
 };
 
-<<<<<<< HEAD
 //to hold onto what the users click for their characters
 var p1char;
 var p2char;
@@ -30,7 +29,7 @@ function playerNames(p1name, p2name) {
     $('.choose-your-character2').prepend('<h2>' + p2name + ' choose your character!' + '</h2>');
 }
 playerNames(p1name, p2name);
-=======
+
 //random variables to choose from
 //I didnt know that random variables are saved in that point in time. And if called again
 //it's the same variable, it's the same thing
@@ -42,7 +41,7 @@ var randos = {
     five: Math.floor((Math.random() * 4) + 1),
     six: Math.floor((Math.random() * 4) + 1)
 };
->>>>>>> d912361dda275d1f26a35a6fe48722c88d9dfb4e
+
 function Game(player1character, player2character) {
     this.characters = {
         goomba: '"http://www.nesmaps.com/maps/SuperMarioBrothers/sprites/LittleGoomba.gif"' + ' width="16"' + ' height="16"',
@@ -346,6 +345,3 @@ Game.prototype.init = function() {
     }
     play++;
 };
-
-
-
