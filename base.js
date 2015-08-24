@@ -1,79 +1,81 @@
 var play = 0;
-
-//speeds
-var speed = {
-    slow: 160,
-    medium: 110,
-    fast: 60
+var keys = {
+    p1Keys: {
+        wKey: 119,
+        sKey: 115,
+        dKey: 100,
+        aKey: 97
+    },
+    p2Keys: {
+        iKey: 105,
+        kKey: 107,
+        lKey: 108,
+        jKey: 106
+    }
 };
-//player keys used
-var player1Keys = {
-    wKey: 119,
-    sKey: 115,
-    dKey: 100,
-    aKey: 97
-};
-var player2Keys = {
-    iKey: 105,
-    kKey: 107,
-    lKey: 108,
-    jKey: 106
-};
-
-var characters = {
-    goomba: '"http://www.nesmaps.com/maps/SuperMarioBrothers/sprites/LittleGoomba.gif"' + ' width="16"' + ' height="16"',
-    koopa: '"http://files.gamebanana.com/img/ico/sprays/parakoopamediumani_2.gif"' + ' width="28"' + ' height="25"',
-    thwomp: '"http://www.snesmaps.com/maps/SuperMarioWorld/sprites/ThwompAngry.png"' + ' width="18"' + ' height="18"',
-    boo: '"http://www.snesmaps.com/maps/SuperMarioWorld/sprites/BooBuddy3L.gif"' + ' width="15"' + ' height="15"',
-    mario: 'http://i.imgur.com/YnxVNmG.gif',
-    luigi: 'http://orig11.deviantart.net/81b5/f/2012/035/4/b/running_luigi__icon__by_thelombax51-d4oox27.gif',
-    bill: 'http://www.snesmaps.com/maps/SuperMarioWorld/sprites/BulletBillL.png' + ' width="20' + ' height="20"'
-};
-var enemies = [ characters.goomba, characters.koopa, characters.thwomp, characters.boo];
-
-//player tracks
-var player1Track = new Track('#player1');
-var player2Track = new Track('#player2');
-player1Track.makeTrack(player1Track.playerId);
-player2Track.makeTrack(player2Track.playerId);
-
-//players
-var player1 = new Player(player1Keys.aKey, player1Keys.wKey, player1Keys.sKey, player1Keys.dKey,
-                        'http://i.imgur.com/YnxVNmG.gif');
-var p1Movement = player1.movementKeys;
-var player2 = new Player(player2Keys.jKey, player2Keys.iKey, player2Keys.kKey, player2Keys.lKey,
-                        'http://orig11.deviantart.net/81b5/f/2012/035/4/b/running_luigi__icon__by_thelombax51-d4oox27.gif');
-var p2Movement = player2.movementKeys;
-
-//enemies
-var enemy1 = new Enemy(2, speed.medium, characters.goomba, 42, 'vertical');
-var enemy2 = new Enemy(82, speed.slow + 40, characters.goomba, 87, 'horizontal');
-var enemy3 = new Enemy(51, speed.medium, characters.boo, 91, 'vertical');
-var enemy4 = new Enemy(26, speed.fast, characters.thwomp, 33, 'horizontal');
-var enemy5 = new Enemy(19, speed.fast, characters.thwomp, 99, 'vertical');
-var enemy6 = new Enemy(74, speed.slow, characters.koopa, 78, 'horizontal');
-var enemy7 = new Enemy(20, speed.fast, characters.bill, 1, 'bill');
-
-//calls and initiates playermovement
-movement();
-enemyMove(enemy1, 'player1');
-enemyMove(enemy2, 'player1');
-enemyMove(enemy3, 'player1');
-enemyMove(enemy4, 'player1');
-enemyMove(enemy5, 'player1');
-enemyMove(enemy6, 'player1');
-enemyMove(enemy7, 'player1');
 //random variables to choose from
 //I didnt know that random variables are saved in that point in time. And if called again
 //it's the same variable, it's the same thing
 var randos = {
-        one: Math.floor((Math.random() * 4) + 1),
-        two: Math.floor((Math.random() * 4) + 1),
-        three: Math.floor((Math.random() * 4) + 1),
-        four: Math.floor((Math.random() * 4) + 1),
-        five: Math.floor((Math.random() * 4) + 1),
-        six: Math.floor((Math.random() * 4) + 1)
+    one: Math.floor((Math.random() * 4) + 1),
+    two: Math.floor((Math.random() * 4) + 1),
+    three: Math.floor((Math.random() * 4) + 1),
+    four: Math.floor((Math.random() * 4) + 1),
+    five: Math.floor((Math.random() * 4) + 1),
+    six: Math.floor((Math.random() * 4) + 1)
 };
+function Game(player1character, player2character) {
+    this.characters = {
+        goomba: '"http://www.nesmaps.com/maps/SuperMarioBrothers/sprites/LittleGoomba.gif"' + ' width="16"' + ' height="16"',
+        koopa: '"http://files.gamebanana.com/img/ico/sprays/parakoopamediumani_2.gif"' + ' width="28"' + ' height="25"',
+        thwomp: '"http://www.snesmaps.com/maps/SuperMarioWorld/sprites/ThwompAngry.png"' + ' width="18"' + ' height="18"',
+        boo: '"http://www.snesmaps.com/maps/SuperMarioWorld/sprites/BooBuddy3L.gif"' + ' width="15"' + ' height="15"',
+        mario: 'http://i.imgur.com/YnxVNmG.gif',
+        luigi: 'http://orig11.deviantart.net/81b5/f/2012/035/4/b/running_luigi__icon__by_thelombax51-d4oox27.gif',
+        bill: 'http://www.snesmaps.com/maps/SuperMarioWorld/sprites/BulletBillL.png' + ' width="20' + ' height="20"',
+        goku: 'http://orig07.deviantart.net/da30/f/2015/103/c/8/goku_fukkatsu_no_f_idle_by_dabbido-d8plast.gif',
+        megaman: 'https://ssl-forum-files.fobby.net/forum_attachments/0021/5068/run.gif'
+    },
+    this.player1 = new Player(keys.p1Keys.aKey, keys.p1Keys.wKey, keys.p1Keys.sKey, keys.p1Keys.dKey, this.characters[player1character]);
+    this.player2 = new Player(keys.p2Keys.jKey, keys.p2Keys.iKey, keys.p2Keys.kKey, keys.p2Keys.lKey, this.characters[player2character]);
+    this.track1 = new Track('player1');
+    this.track2 = new Track('player2');
+    this.characters = {
+        goomba: '"http://www.nesmaps.com/maps/SuperMarioBrothers/sprites/LittleGoomba.gif"' + ' width="16"' + ' height="16"',
+        koopa: '"http://files.gamebanana.com/img/ico/sprays/parakoopamediumani_2.gif"' + ' width="28"' + ' height="25"',
+        thwomp: '"http://www.snesmaps.com/maps/SuperMarioWorld/sprites/ThwompAngry.png"' + ' width="18"' + ' height="18"',
+        boo: '"http://www.snesmaps.com/maps/SuperMarioWorld/sprites/BooBuddy3L.gif"' + ' width="15"' + ' height="15"',
+        mario: 'http://i.imgur.com/YnxVNmG.gif',
+        luigi: 'http://orig11.deviantart.net/81b5/f/2012/035/4/b/running_luigi__icon__by_thelombax51-d4oox27.gif',
+        bill: 'http://www.snesmaps.com/maps/SuperMarioWorld/sprites/BulletBillL.png' + ' width="20' + ' height="20"'
+    };
+    this.speed = {
+        slow: 160,
+        medium: 110,
+        fast: 60
+    };
+    this.enemies = {
+        one: new Enemy(2, this.speed.medium, this.characters.goomba, 42, 'vertical'),
+        two: new Enemy(82, this.speed.slow + 40, this.characters.goomba, 87, 'horizontal'),
+        three: new Enemy(51, this.speed.medium, this.characters.boo, 91, 'vertical'),
+        four: new Enemy(26, this.speed.fast, this.characters.thwomp, 33, 'horizontal'),
+        five: new Enemy(19, this.speed.fast, this.characters.thwomp, 99, 'vertical'),
+        six: new Enemy(74, this.speed.slow, this.characters.koopa, 78, 'horizontal'),
+        seven: new Enemy(20, this.speed.fast, this.characters.bill, 1, 'bill'),
+        eight: new Enemy(2, this.speed.medium, this.characters.goomba, 42, 'vertical'),
+        nine: new Enemy(82, this.speed.slow + 40, this.characters.goomba, 87, 'horizontal'),
+        ten: new Enemy(51, this.speed.medium, this.characters.boo, 91, 'vertical'),
+        eleven: new Enemy(26, this.speed.fast, this.characters.thwomp, 33, 'horizontal'),
+        twelve: new Enemy(19, this.speed.fast, this.characters.thwomp, 99, 'vertical'),
+        thirteen: new Enemy(74, this.speed.slow, this.characters.koopa, 78, 'horizontal'),
+        fourteen: new Enemy(20, this.speed.fast, this.characters.bill, 1, 'bill')
+    };
+    this.charChoose = function() {
+        $('#choose-your-character img').on('click', function() {
+            console.log($(this).attr('id'));
+        })
+    }
+}
 
 function Track(playerId) {
     this.divs = 100;
@@ -83,12 +85,12 @@ function Track(playerId) {
     this.finishLine = 60;
     this.makeTrack = function(arg) {
         for(var i = 0; i < this.divs; i++) {
-            $(arg).append('<div></div>');
+            $('#' + playerId).append('<div></div>');
             //console.log('test');
+
         }
     }
 }
-
 
 function Player(leftKey, upKey, downKey, rightKey, img) {
     this.placement = 1;
@@ -134,17 +136,16 @@ function Enemy(position, speed, img, end, moveStyle) {
     this.moveStyle = moveStyle;
 }
 
-
-function movement(){
+function movement () {
     $(window).on('keypress', function handleClick(e) {
-        function playerMovement (player, playerstring, pmovement, track) {
+        function playerMovement (player, playerid, pmovement, track) {
             //move right pressing the correct key
             if (e.which === pmovement.right
                 && (player.placement % track.columns !== 0)) {
                 player.placement++;
-                entityImg(playerstring, player.character, player.placement, -1);
-                console.log(player1.placement);
-                //console.log(player2.placement);
+                entityImg(playerid, player.character, player.placement, -1);
+                console.log(game.player1.placement);
+                console.log(game.player2.placement);
 
             }
             //move left pressing the correct key
@@ -153,65 +154,53 @@ function movement(){
                 && (player.placement !== (1 + (track.columns * 2)))
                 && (player.placement !== (1 + (track.columns * 3)))
                 && (player.placement !== (1 + (track.columns * 4)))) {
-                    player.placement--;
-                    entityImg(playerstring, player.character, player.placement, 1);
-                    console.log(player1.placement);
-                    //console.log(player2.placement);
+                player.placement--;
+                entityImg(playerid, player.character, player.placement, 1);
+                console.log(game.player1.placement);
+                console.log(game.player2.placement);
 
             }
             //move down pressing the correct key
             if (e.which === pmovement.down && (player.placement < track.lastRow)) {
                 player.placement += track.columns;
-                entityImg(playerstring, player.character, player.placement, (-1*(track.columns)));
-                console.log(player1.placement);
-                //console.log(player2.placement);
+                entityImg(playerid, player.character, player.placement, (-1*(track.columns)));
+                console.log(game.player1.placement);
+                console.log(game.player2.placement);
 
             }
             //move up pressing the correct key
             if (e.which === pmovement.up && (player.placement !== 1)
                 && (player.placement > track.columns)) {
                 player.placement -= track.columns;
-                entityImg(playerstring, player.character, player.placement, track.columns);
-                console.log(player1.placement);
-                //console.log(player2.placement);
+                entityImg(playerid, player.character, player.placement, track.columns);
+                console.log(game.player1.placement);
+                console.log(game.player2.placement);
 
             }
         }
         //calls and activates player movements
-        playerMovement(player1, 'player1', p1Movement, player1Track);
-        playerMovement(player2, 'player2', p2Movement, player2Track);
+        playerMovement(game.player1, game.track1.playerId, game.player1.movementKeys, game.track1);
+        playerMovement(game.player2, game.track2.playerId, game.player2.movementKeys, game.track2);
 
         //finish line
-        if ((player1.placement === player1Track.finishLine) && (play === 1)) {
+        if ((game.player1.placement === game.track1.finishLine) && (play === 1)) {
             window.location.replace("player1Win.html");
         }
-        if ((player2.placement === player2Track.finishLine) && (play === 1)) {
+        if ((game.player2.placement === game.track2.finishLine) && (play === 1)) {
             window.location.replace("player2Win.html");
         }
     });
 }
 
-//adds and removes the character image of the character
-function entityImg(player, character , placement, remove) {
-    $('div#' + player + '.gameboard div:nth-child(' + placement + ')').css("content", "url(" + character + ")");
-    $('div#' + player + '.gameboard div:nth-child(' + (placement + remove) + ')').css("content", "");
-}
-
-function enemyImg(player, character, placement, remove) {
-    $('div#' + player + '.gameboard div:nth-child(' + placement + ')').append("<img src=" + character + ">");
-    $('div#' + player + '.gameboard div:nth-child(' + (placement + remove) + ')').empty('<img>');
-}
-
-function enemyMove(enemy, playerstring) {
+function enemyMove(enemy, playerid, player) {
     var start = enemy.position;
     if(enemy.moveStyle === 'vertical') {
         function enemyDown() {
             setTimeout(function () {
-                //dead(enemyMove1);
+                dead(enemy, player, playerid);
                 if (enemy.position < enemy.end) {
-                    enemy.moveDown(player1Track.columns);
-                    console.log(enemy.position);
-                    enemyImg(playerstring, enemy.character, enemy.position, (-1*(player1Track.columns)));
+                    enemy.moveDown(game.track1.columns);
+                    enemyImg(playerid, enemy.character, enemy.position, (-1*(game.track1.columns)));
                     enemyDown();
                 }
                 else {
@@ -222,14 +211,10 @@ function enemyMove(enemy, playerstring) {
 
         function enemyUp() {
             setTimeout(function () {
-                //dead(enemyMove1);
+                dead(enemy, player, playerid);
                 if (start < enemy.position) {
-                    enemy.moveUp(player1Track.columns);
-                    console.log(enemy.position);
-                    enemyImg(playerstring, enemy.character, enemy.position, player1Track.columns);
-                    //enemyImg1(enemyMove1, (-1*(rows)), enemyPics[rando1]);
-                    //enemyImg2(enemyMove1, (-1*(rows)), enemyPics[rando1]);
-
+                    enemy.moveUp(game.track1.columns);
+                    enemyImg(playerid, enemy.character, enemy.position, game.track1.columns);
                     enemyUp();
                 }
                 else {
@@ -242,13 +227,10 @@ function enemyMove(enemy, playerstring) {
     if(enemy.moveStyle === 'horizontal') {
         function enemyRight() {
             setTimeout(function () {
-                //dead(enemyMove6);
+                dead(enemy, player, playerid);
                 if (enemy.position < enemy.end) {
                     enemy.moveRight();
-                    console.log(enemy.position);
-                    enemyImg(playerstring, enemy.character, enemy.position, -1);
-                    //enemyImg1(enemyMove6, 1, enemyPics[rando6]);
-                    //enemyImg2(enemyMove6, 1, enemyPics[rando6]);
+                    enemyImg(playerid, enemy.character, enemy.position, -1);
                     enemyRight();
                 }
                 else {
@@ -259,11 +241,10 @@ function enemyMove(enemy, playerstring) {
 
         function enemyLeft() {
             setTimeout(function () {
-                //dead(enemyMove6);
+                dead(enemy, player, playerid);
                 if (start < enemy.position) {
                     enemy.moveLeft();
-                    console.log(enemy.position);
-                    enemyImg(playerstring, enemy.character, enemy.position, 1);
+                    enemyImg(playerid, enemy.character, enemy.position, 1);
                     enemyLeft();
                 }
                 else {
@@ -277,11 +258,10 @@ function enemyMove(enemy, playerstring) {
     if(enemy.moveStyle === 'bill') {
         function bulletBill() {
             setTimeout(function () {
-                //dead(enemyMove6);
+                dead(enemy, player, playerid);
                 if (enemy.position >= enemy.end) {
                     enemy.position--;
-                    console.log(enemy.position);
-                    enemyImg(playerstring, enemy.character, enemy.position, 1);
+                    enemyImg(playerid, enemy.character, enemy.position, 1);
                     bulletBill();
                 }
             }, enemy.speed);
@@ -291,7 +271,55 @@ function enemyMove(enemy, playerstring) {
             enemy.position = 20;
         }, 5000);
     }
-
 }
+
+//adds and removes the character image of the character
+function entityImg(player, character , placement, remove) {
+    $('div#' + player + '.gameboard div:nth-child(' + placement + ')').css("content", "url(" + character + ")");
+    $('div#' + player + '.gameboard div:nth-child(' + (placement + remove) + ')').css("content", "");
+}
+
+function enemyImg(player, character, placement, remove) {
+    $('div#' + player + '.gameboard div:nth-child(' + placement + ')').append("<img src=" + character + ">");
+    $('div#' + player + '.gameboard div:nth-child(' + (placement + remove) + ')').empty('<img>');
+}
+function remImg(counter, playerid) {
+    $('div#' + playerid + '.gameboard div:nth-child(' + (counter) + ')').css("content", "");
+}
+
+function enemySpawns() {
+    var enemies = game.enemies;
+    enemyMove(enemies.one, game.track1.playerId, game.player1);   enemyMove(enemies.eight, game.track2.playerId , game.player2);
+    enemyMove(enemies.two, game.track1.playerId, game.player1);   enemyMove(enemies.nine, game.track2.playerId , game.player2);
+    enemyMove(enemies.three, game.track1.playerId, game.player1); enemyMove(enemies.ten, game.track2.playerId , game.player2);
+    enemyMove(enemies.four, game.track1.playerId, game.player1);  enemyMove(enemies.eleven, game.track2.playerId , game.player2);
+    enemyMove(enemies.five, game.track1.playerId, game.player1);  enemyMove(enemies.twelve, game.track2.playerId , game.player2);
+    enemyMove(enemies.six, game.track1.playerId, game.player1);   enemyMove(enemies.thirteen, game.track2.playerId , game.player2);
+    enemyMove(enemies.seven, game.track1.playerId, game.player1); enemyMove(enemies.fourteen, game.track2.playerId , game.player2);
+}
+
+//sends the player back to the start if their move counter matches the enemy's move counter
+function dead(enemy, player, playerid) {
+    if (player.placement === enemy.position) {
+        //removes player img from current position when play button is clicked and sends player back to beginning
+        remImg(player.placement, playerid);
+        player.placement = 1;
+        entityImg(playerid, player.character, player.placement, 0);
+        console.log(player.placement);
+    }
+}
+
+var game = new Game();
+game.track1.makeTrack(game.track1.playerId);
+game.track2.makeTrack(game.track2.playerId);
+game.charChoose();
+Game.prototype.init = function() {
+    if(play === 0) {
+    movement();
+    enemySpawns();
+    }
+    play++;
+};
+
 
 

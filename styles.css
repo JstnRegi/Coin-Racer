@@ -83,6 +83,7 @@ body div.instructions {
     height: 30px;
     margin-left: auto;
     margin-right: auto;
+    margin-bottom: 100px;
 }
 
 body div.player1 {
@@ -97,4 +98,12 @@ body div.player2 {
     width: 200px;
     margin: auto;
     float: left;
+}
+
+#choose-your-character {
+    line-height: 48px;
+}
+
+#choose-your-character img {
+    margin: 10px;
 }
