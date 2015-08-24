@@ -16,17 +16,18 @@ var keys = {
     }
 };
 
-//to hold onto what the users click for their characters
+//to hold onto what the users click for their characters BEFORE game start
 var p1char;
 var p2char;
 
-//asks for playernames
+//asks for playernames BEFORE game start
 var p1name = prompt('Please type your game name', 'Player 1');
 var p2name = prompt('Please type your game name', 'Player 2');
 
+//prepends player names BEFORE game start
 function playerNames(p1name, p2name) {
-    $('.choose-your-character1').prepend('<h2>' + p1name + ' choose your character!' + '</h2>');
-    $('.choose-your-character2').prepend('<h2>' + p2name + ' choose your character!' + '</h2>');
+    $('.choose-your-character1').prepend('<h2>' + p1name + ' click your character!' + '</h2>');
+    $('.choose-your-character2').prepend('<h2>' + p2name + ' click your character!' + '</h2>');
 }
 playerNames(p1name, p2name);
 
@@ -52,7 +53,8 @@ function Game(player1character, player2character) {
         luigi: 'http://orig11.deviantart.net/81b5/f/2012/035/4/b/running_luigi__icon__by_thelombax51-d4oox27.gif',
         bill: 'http://www.snesmaps.com/maps/SuperMarioWorld/sprites/BulletBillL.png' + ' width="20' + ' height="20"',
         goku: 'http://vignette4.wikia.nocookie.net/deathbattlefanon/images/4/4b/Goku_idle_by_tucker45855-d5qc2jm.gif/revision/latest?cb=20150307180427',
-        megaman: 'http://archive.bnetweb.org/avatars/Gaming/MegaMan-Running.gif'
+        megaman: 'http://archive.bnetweb.org/avatars/Gaming/MegaMan-Running.gif',
+        coin: "http://www.snesmaps.com/maps/SuperMarioWorld/sprites/Coin.gif"
     },
     this.player1 = new Player(keys.p1Keys.aKey, keys.p1Keys.wKey, keys.p1Keys.sKey, keys.p1Keys.dKey, this.characters[player1character]);
     this.player2 = new Player(keys.p2Keys.jKey, keys.p2Keys.iKey, keys.p2Keys.kKey, keys.p2Keys.lKey, this.characters[player2character]);
@@ -78,6 +80,12 @@ function Game(player1character, player2character) {
         twelve: new Enemy(19, this.speed.fast, this.characters.thwomp, 99, 'vertical'),
         thirteen: new Enemy(74, this.speed.slow, this.characters.koopa, 78, 'horizontal'),
         fourteen: new Enemy(20, this.speed.fast, this.characters.bill, 1, 'bill')
+    };
+    this.coinRando = Math.floor((Math.random() * 7) + 1);
+    this.coinSpawns = [0, 83, 25, 86, 10, 50, 92, 34];
+    this.coinSpawner = function() {
+        $('div#player1.gameboard div:nth-child(' + this.coinSpawns[this.coinRando] + ')').css("content", 'url(' + "" + this.characters.coin  + "" + ')');
+        console.log('coin');
     };
 }
 
@@ -316,11 +324,13 @@ function dead(enemy, player, playerid) {
 $('.choose-your-character1 img').on('click', function () {
     console.log($(this).attr('id'));
     p1char = $(this).attr('id');
+    alert(p1name + ' chose ' + p1char);
 });
 
 $('.choose-your-character2 img').on('click', function () {
     console.log($(this).attr('id'));
     p2char = $(this).attr('id');
+    alert(p2name + ' chose ' + p2char);
 });
 
 function chooseYourChar() {
@@ -341,7 +351,14 @@ function chooseYourChar() {
 
 Game.prototype.init = function() {
     if(play === 1) {
-    enemySpawns();
+        enemySpawns();
+        remImg(game.player1.placement, game.track1.playerId);
+        remImg(game.player2.placement, game.track2.playerId);
+        game.player1.placement = 1;
+        game.player2.placement = 1;
+        entityImg(game.track1.playerId, game.player1.character, game.player1.placement, 2);
+        entityImg(game.track2.playerId, game.player2.character, game.player2.placement, 2);
+        //game.coinSpawner();
     }
     play++;
 };
