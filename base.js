@@ -13,6 +13,7 @@ var keys = {
         jKey: 106
     }
 };
+
 //random variables to choose from
 //I didnt know that random variables are saved in that point in time. And if called again
 //it's the same variable, it's the same thing
