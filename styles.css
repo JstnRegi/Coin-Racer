@@ -1,5 +1,10 @@
+html {
+    background: url(http://7-themes.com/data_images/out/13/6812737-super-mario-wallpaper.jpg) center;
+}
 h1#main {
+    font-family: 'Press Start 2P', cursive;
     text-align: center;
+    color: white;
 }
 
 h1#instruc {
@@ -7,17 +12,23 @@ h1#instruc {
     text-align: center;
 }
 
+p {
+    font-family: 'Press Start 2P', cursive;
+    width: 200px;
+    display: inline;
+    font-size: 10px;
+}
+
 .wrapper {
     width: 500px;
-    height: 400px;
+    height: 150px;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 100px;
 }
 .gameboard {
     width: 550px;
     height:100px;
-    border:3px solid white;
+    /*border:3px solid white;*/
     z-index: 1;
     margin-bottom: 50px;
 }
@@ -26,9 +37,23 @@ h1#instruc {
     height: 25px;
     float: left;
     display: inline;
-    border: 1px solid black;
+    border: 1px solid white;
 }
 
+#player1 {
+    margin-top: 20px;
+    border: 1px solid red;
+    width: 540px;
+    height: 135px;
+    background-color: white;
+}
+
+#player2 {
+    border: 1px solid blue;
+    width: 540px;
+    height:135px;
+    background-color: white;
+}
 div.top {
     border-top: 1px solid black;
 }
@@ -79,25 +104,33 @@ div.right {
 
 body div.instructions {
     text-align: center;
-    width: 400px;
-    height: 30px;
+    width: 508px;
+    height: 490px;
     margin-left: auto;
     margin-right: auto;
-    margin-bottom: 100px;
+    margin-bottom: 350px;
 }
 
 body div.player1 {
     display: block;
-    width: 200px;
-    margin: auto;
+    width: 250px;
+    margin-bottom: 30px;
     float: left;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 9px;
+    line-height: 18px;
+    color: red;
 }
 
 body div.player2 {
     display: block;
-    width: 200px;
-    margin: auto;
+    width: 250px;
+    margin-bottom: 30px;
     float: left;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 9px;
+    line-height: 18px;
+    color: blue;
 }
 
 #choose-your-character {
@@ -106,4 +139,10 @@ body div.player2 {
 
 #choose-your-character img {
     margin: 10px;
+}
+
+button {
+    width: 100px;
+    margin-left: auto;
+    margin-right: auto;
 }
