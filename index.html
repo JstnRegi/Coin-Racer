@@ -17,6 +17,13 @@
     <div class="player2">
         Player 2 Controls: <br><br> I = UP <br> K = DOWN < <br> L = RIGHT <br>
     </div>
+    <div id="choose-your-character">
+        <h2>Choose your character!</h2>
+        <img src='http://i.imgur.com/YnxVNmG.gif' width="40px" height="40px" id="mario">
+        <img src="http://orig11.deviantart.net/81b5/f/2012/035/4/b/running_luigi__icon__by_thelombax51-d4oox27.gif" height="40px" id="luigi">
+        <img src="http://orig07.deviantart.net/da30/f/2015/103/c/8/goku_fukkatsu_no_f_idle_by_dabbido-d8plast.gif" height="50px" id="goku">
+        <img src="https://ssl-forum-files.fobby.net/forum_attachments/0021/5068/run.gif" height="30px" id="megaman">
+    </div>
 </div>
 <br>
 <div class="wrapper">
@@ -31,7 +38,7 @@
 
 
     <script src="base.js"></script>
-    <button onclick="enemies()">Play</button>
+    <button onclick="game.init();">Play</button>
     <button onclick="restart()">Restart</button>
     <script>
         function restart() {
