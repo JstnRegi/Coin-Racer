@@ -47,7 +47,7 @@ var randos = {
 
 function Game(player1character, player2character) {
     this.characters = {
-        goomba: '"http://www.nesmaps.com/maps/SuperMarioBrothers/sprites/LittleGoomba.gif"' + ' width="20"' + ' height="20"',
+            goomba: '"http://www.nesmaps.com/maps/SuperMarioBrothers/sprites/LittleGoomba.gif"' + ' width="16"' + ' height="16"',
         koopa: '"http://files.gamebanana.com/img/ico/sprays/parakoopamediumani_2.gif"' + ' width="28"' + ' height="25"',
         thwomp: '"http://www.snesmaps.com/maps/SuperMarioWorld/sprites/ThwompAngry.png"' + ' width="18"' + ' height="18"',
         boo: '"http://www.snesmaps.com/maps/SuperMarioWorld/sprites/BooBuddy3L.gif"' + ' width="15"' + ' height="15"',
@@ -104,7 +104,6 @@ function Game(player1character, player2character) {
             $('#score2').append('<img src=' + this.characters.coin + '>');
             console.log(this.player2.score);
         }
-
     };
 }
 
@@ -197,6 +196,169 @@ function movement () {
                 && (player.placement > track.columns)) {
                 player.placement -= track.columns;
                 entityImg(playerid, player.character, player.placement, track.columns);
+
+            }
+        }
+        //calls and activates player movements
+        playerMovement(game.player1, game.track1.playerId, game.player1.movementKeys, game.track1);
+        playerMovement(game.player2, game.track2.playerId, game.player2.movementKeys, game.track2);
+
+        //finish line
+        if ((game.player1.placement === game.track1.finishLine) && (play === 2)) {
+            window.location.replace("player1Win.html");
+        }
+        if ((game.player2.placement === game.track2.finishLine) && (play === 2)) {
+            window.location.replace("player2Win.html");
+        }
+    });
+}
+
+<<<<<<< HEAD
+function enemyMove(enemy, playerid, player) {
+    var start = enemy.position;
+    if(enemy.moveStyle === 'vertical') {
+        function enemyDown() {
+            setTimeout(function () {
+                dead(enemy, player, playerid);
+                if (enemy.position < enemy.end) {
+                    enemy.moveDown(game.track1.columns);
+                    enemyImg(playerid, enemy.character, enemy.position, (-1*(game.track1.columns)));
+                    enemyDown();
+                }
+                else {
+                    enemyUp();
+                }
+            }, enemy.speed);
+        }
+
+        function enemyUp() {
+            setTimeout(function () {
+                dead(enemy, player, playerid);
+                if (start < enemy.position) {
+                    enemy.moveUp(game.track1.columns);
+                    enemyImg(playerid, enemy.character, enemy.position, game.track1.columns);
+                    enemyUp();
+                }
+                else {
+                    enemyDown();
+                }
+            }, enemy.speed);
+        }
+        enemyDown();
+    }
+    if(enemy.moveStyle === 'horizontal') {
+        function enemyRight() {
+            setTimeout(function () {
+                dead(enemy, player, playerid);
+                if (enemy.position < enemy.end) {
+                    enemy.moveRight();
+                    enemyImg(playerid, enemy.character, enemy.position, -1);
+                    enemyRight();
+                }
+                else {
+                    enemyLeft();
+                }
+            }, enemy.speed);
+        }
+
+        function enemyLeft() {
+            setTimeout(function () {
+                dead(enemy, player, playerid);
+                if (start < enemy.position) {
+                    enemy.moveLeft();
+                    enemyImg(playerid, enemy.character, enemy.position, 1);
+                    enemyLeft();
+                }
+                else {
+                    enemyRight();
+                }
+            }, enemy.speed);
+        }
+        enemyRight();
+    }
+    //function for bill to fly by
+    if(enemy.moveStyle === 'bill') {
+        function bulletBill() {
+            setTimeout(function () {
+                dead(enemy, player, playerid);
+                if (enemy.position >= enemy.end) {
+                    enemy.position--;
+                    enemyImg(playerid, enemy.character, enemy.position, 1);
+                    bulletBill();
+                }
+            }, enemy.speed);
+        }
+        setInterval( function() {
+            bulletBill();
+            enemy.position = 20;
+        }, 5000);
+    }
+}
+
+//adds and removes the character image of the character
+function entityImg(player, character , placement, remove) {
+    $('div#' + player + '.gameboard div:nth-child(' + placement + ')').css("content", "url(" + character + ")");
+    $('div#' + player + '.gameboard div:nth-child(' + (placement + remove) + ')').css("content", "");
+}
+function Enemy(position, speed, img, end, moveStyle) {
+    this.position = position;
+    this.speed = speed;
+    this.moveRight = function() {
+        this.position++;
+    };
+    this.moveLeft = function() {
+        this.position--;
+    };
+    this.moveUp = function(columns) {
+        this.position -= columns;
+    };
+    this.moveDown = function(columns) {
+        this.position += columns;
+    };
+    this.character = img;
+    this.end = end;
+    this.moveStyle = moveStyle;
+}
+
+function movement () {
+    $(window).on('keypress', function handleClick(e) {
+        function playerMovement (player, playerid, pmovement, track) {
+            //move right pressing the correct key
+            if (e.which === pmovement.right
+                && (player.placement % track.columns !== 0)) {
+                player.placement++;
+                entityImg(playerid, player.character, player.placement, -1);
+                console.log(game.player1.placement);
+                console.log(game.player2.placement);
+
+            }
+            //move left pressing the correct key
+            if (e.which === pmovement.left && (player.placement !== 1)
+                && (player.placement !== (1 + (track.columns)))
+                && (player.placement !== (1 + (track.columns * 2)))
+                && (player.placement !== (1 + (track.columns * 3)))
+                && (player.placement !== (1 + (track.columns * 4)))) {
+                player.placement--;
+                entityImg(playerid, player.character, player.placement, 1);
+                console.log(game.player1.placement);
+                console.log(game.player2.placement);
+
+            }
+            //move down pressing the correct key
+            if (e.which === pmovement.down && (player.placement < track.lastRow)) {
+                player.placement += track.columns;
+                entityImg(playerid, player.character, player.placement, (-1*(track.columns)));
+                console.log(game.player1.placement);
+                console.log(game.player2.placement);
+
+            }
+            //move up pressing the correct key
+            if (e.which === pmovement.up && (player.placement !== 1)
+                && (player.placement > track.columns)) {
+                player.placement -= track.columns;
+                entityImg(playerid, player.character, player.placement, track.columns);
+                console.log(game.player1.placement);
+                console.log(game.player2.placement);
 
             }
         }
@@ -327,7 +489,6 @@ function dead(enemy, player, playerid) {
         remImg(player.placement, playerid);
         player.placement = 1;
         entityImg(playerid, player.character, player.placement, 2);
-        //console.log(player.placement);
     }
 }
 

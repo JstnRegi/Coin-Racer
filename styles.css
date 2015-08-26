@@ -55,6 +55,7 @@ p {
     height: 185px;
     background-color: white;
     margin-top: 25px;
+
 }
 div.top {
     border-top: 1px solid black;
@@ -159,6 +160,7 @@ h2 {
     text-shadow: #000000 0px 2px 1px;
 }
 
+
 #player1 {
     z-index: 1;
 }
@@ -167,4 +169,8 @@ h2 {
     position: absolute;
     left: 225px;
     float: left;
+}
+
+#coin {
+    z-index: 1;
 }
