@@ -213,7 +213,6 @@ function movement () {
     });
 }
 
-<<<<<<< HEAD
 function enemyMove(enemy, playerid, player) {
     var start = enemy.position;
     if(enemy.moveStyle === 'vertical') {
@@ -510,7 +509,8 @@ function chooseYourChar() {
         $('.choose-your-character1').remove();
         $('.choose-your-character2').remove();
         $('p').remove();
-        $('#character-select').empty();
+        $('#character-select').remove();
+        $('.instructions').css('margin-bottom', '40px');
         game.track1.makeTrack(game.track1.playerId);
         game.track2.makeTrack(game.track2.playerId);
         entityImg(game.track1.playerId, game.player1.character, game.player1.placement, 2);
