@@ -99,7 +99,7 @@ function Game(player1character, player2character) {
             this.coinRando = Math.floor((Math.random() * 7) + 1);
             this.player1.score += 1;
             $('#score1').append('<img src="' + this.characters.coin + '"' + 'width="23px" class="coin">');
-            if(this.player1.score === this.winningScore) {
+            if(this.player1.score === 4) {
                 $('div#player1.gameboard div:nth-child(' + 60 + ')').css("content", "");
                 $('div#player1.gameboard div:nth-child(' + 60 + ')').css("content", "url(" + this.characters.peach + ")");
             }
