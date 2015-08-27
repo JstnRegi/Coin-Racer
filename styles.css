@@ -34,27 +34,29 @@ p {
     margin-bottom: 50px;
 }
 .gameboard div {
-    width: 35px;
-    height: 35px;
+    width: 40px;
+    height: 40px;
     float: left;
     display: inline;
     border: 1px solid white;
 }
 
 #player1 {
-    margin-top: 20px;
+
     border: 1px solid red;
-    width: 745px;
-    height: 185px;
+    width: 854px;
+    height: 213px;
     background-color: white;
+    margin-top: 20px;
+    margin-bottom: 10px;
 }
 
 #player2 {
     border: 1px solid blue;
-    width: 745px;
-    height: 185px;
+    width: 854px;
+    height: 215px;
     background-color: white;
-    margin-top: 10px;
+    margin-top: 0px;
     margin-bottom: 3px;
 
 }
@@ -151,6 +153,7 @@ button {
     width: 100px;
     margin-left: auto;
     margin-right: auto;
+    margin-bottom: 40px;
 }
 
 h2 {
@@ -162,11 +165,16 @@ h2 {
 }
 
 .scoreboard {
-    position: absolute;
-    left: 260px;
-    float: left;
+    font-family: 'Press Start 2P', cursive;
+    color: black;
+    /*text-shadow: #ffffff 0px 1px 1px;*/
+    position: relative;
+    left: 90px;
+    height:31px;
+    -webkit-text-stroke-width: .1px;
+    -webkit-text-stroke-color: white;
 }
 
-#coin {
-    z-index: 1;
+.coin {
+    margin-right: 3px;
 }
