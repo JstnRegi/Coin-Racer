@@ -84,15 +84,15 @@ div.right {
     background-color: blue;
 }*/
 
-/*.gameboard#player1 div:nth-child(60) {*/
-    /*/!*background-color: black;*!/*/
-    /*content: url('http://orig11.deviantart.net/75bd/f/2013/034/d/d/princess_peach_sprite_by_peachkirbycutie-d5tqjs7.gif');*/
-/*}*/
+.gameboard#player1 div:nth-child(60) {
+    /*background-color: black;*/
+    content: url('http://www.snesmaps.com/maps/SuperMarioWorld/sprites/HiddenDoor.png');
+}
 
-/*.gameboard#player2 div:nth-child(60) {*/
-    /*/!*background-color: black;*!/*/
-    /*content: url('http://orig11.deviantart.net/75bd/f/2013/034/d/d/princess_peach_sprite_by_peachkirbycutie-d5tqjs7.gif');*/
-/*}*/
+.gameboard#player2 div:nth-child(60) {
+    /*background-color: black;*/
+    content: url('http://www.snesmaps.com/maps/SuperMarioWorld/sprites/HiddenDoor.png');
+}
 
 .button {
     background-color:white;
@@ -114,7 +114,7 @@ body div.instructions {
     height: 135px;
     margin-left: auto;
     margin-right: auto;
-    margin-bottom: 350px;
+    margin-bottom: 370px;
 }
 
 body div.player1 {
