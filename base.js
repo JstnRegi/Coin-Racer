@@ -56,8 +56,10 @@ function Game(player1character, player2character) {
         bill: 'http://www.snesmaps.com/maps/SuperMarioWorld/sprites/BulletBillL.png' + ' width="20"' + ' height="20"',
         goku: 'http://vignette4.wikia.nocookie.net/deathbattlefanon/images/4/4b/Goku_idle_by_tucker45855-d5qc2jm.gif/revision/latest?cb=20150307180427',
         megaman: 'http://archive.bnetweb.org/avatars/Gaming/MegaMan-Running.gif',
-        coin: "http://www.snesmaps.com/maps/SuperMarioWorld/sprites/Coin.gif"
+        coin: "http://www.snesmaps.com/maps/SuperMarioWorld/sprites/Coin.gif",
+        peach: 'http://orig11.deviantart.net/75bd/f/2013/034/d/d/princess_peach_sprite_by_peachkirbycutie-d5tqjs7.gif'
     },
+    this.winningScore = 4,
     this.player1 = new Player(keys.p1Keys.aKey, keys.p1Keys.wKey, keys.p1Keys.sKey, keys.p1Keys.dKey, this.characters[player1character]);
     this.player2 = new Player(keys.p2Keys.jKey, keys.p2Keys.iKey, keys.p2Keys.kKey, keys.p2Keys.lKey, this.characters[player2character]);
     this.track1 = new Track('player1');
@@ -94,7 +96,9 @@ function Game(player1character, player2character) {
             this.coinRando = Math.floor((Math.random() * 7) + 1);
             this.player1.score += 1;
             $('#score1').append('<img src="' + this.characters.coin + '"' + 'width="23px" class="coin">');
-            console.log(this.player1.score);
+            if(this.player1.score === this.winningScore) {
+                $('div#player1.gameboard div:nth-child(' + 60 + ')').css("content", "url(" + this.characters.peach + ")");
+            }
         }
         if(this.coinSpawns[this.coinRando] === this.player2.placement) {
             $('div#player1.gameboard div:nth-child(' + this.coinSpawns[this.coinRando] + ')').css("background-image", '');
@@ -102,7 +106,9 @@ function Game(player1character, player2character) {
             this.coinRando = Math.floor((Math.random() * 7) + 1);
             this.player2.score += 1;
             $('#score2').append('<img src="' + this.characters.coin + '"' + 'width="23px" class="coin">');
-            console.log(this.player2.score);
+            if(this.player2.score === 4) {
+                $('div#player2.gameboard div:nth-child(' + 60 + ')').css("content", "url(" + this.characters.peach + ")");
+            }
         }
     };
 }
@@ -296,8 +302,8 @@ function enemyMove(enemy, playerid, player) {
 
 //adds and removes the character image of the character
 function entityImg(player, character , placement, remove) {
-    $('div#' + player + '.gameboard div:nth-child(' + placement + ')').css("content", "url(" + character + ")");
     $('div#' + player + '.gameboard div:nth-child(' + (placement + remove) + ')').css("content", "");
+    $('div#' + player + '.gameboard div:nth-child(' + placement + ')').css("content", "url(" + character + ")");
 }
 function Enemy(position, speed, img, end, moveStyle) {
     this.position = position;
@@ -327,8 +333,8 @@ function movement () {
                 && (player.placement % track.columns !== 0)) {
                 player.placement++;
                 entityImg(playerid, player.character, player.placement, -1);
-                console.log(game.player1.placement);
-                console.log(game.player2.placement);
+                //console.log(game.player1.placement);
+                //console.log(game.player2.placement);
 
             }
             //move left pressing the correct key
@@ -339,16 +345,16 @@ function movement () {
                 && (player.placement !== (1 + (track.columns * 4)))) {
                 player.placement--;
                 entityImg(playerid, player.character, player.placement, 1);
-                console.log(game.player1.placement);
-                console.log(game.player2.placement);
+                //console.log(game.player1.placement);
+                //console.log(game.player2.placement);
 
             }
             //move down pressing the correct key
             if (e.which === pmovement.down && (player.placement < track.lastRow)) {
                 player.placement += track.columns;
                 entityImg(playerid, player.character, player.placement, (-1*(track.columns)));
-                console.log(game.player1.placement);
-                console.log(game.player2.placement);
+                //console.log(game.player1.placement);
+                //console.log(game.player2.placement);
 
             }
             //move up pressing the correct key
@@ -356,8 +362,8 @@ function movement () {
                 && (player.placement > track.columns)) {
                 player.placement -= track.columns;
                 entityImg(playerid, player.character, player.placement, track.columns);
-                console.log(game.player1.placement);
-                console.log(game.player2.placement);
+                //console.log(game.player1.placement);
+                //console.log(game.player2.placement);
 
             }
         }
