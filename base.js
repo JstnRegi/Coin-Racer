@@ -47,7 +47,7 @@ var randos = {
 
 function Game(player1character, player2character) {
     this.characters = {
-            goomba: '"http://www.nesmaps.com/maps/SuperMarioBrothers/sprites/LittleGoomba.gif"' + ' width="16"' + ' height="16"',
+        goomba: '"http://www.nesmaps.com/maps/SuperMarioBrothers/sprites/LittleGoomba.gif"' + ' width="16"' + ' height="16"',
         koopa: '"http://files.gamebanana.com/img/ico/sprays/parakoopamediumani_2.gif"' + ' width="28"' + ' height="25"',
         thwomp: '"http://www.snesmaps.com/maps/SuperMarioWorld/sprites/ThwompAngry.png"' + ' width="18"' + ' height="18"',
         boo: '"http://www.snesmaps.com/maps/SuperMarioWorld/sprites/BooBuddy3L.gif"' + ' width="15"' + ' height="15"',
@@ -93,7 +93,7 @@ function Game(player1character, player2character) {
             $('div#player2.gameboard div:nth-child(' + this.coinSpawns[this.coinRando] + ')').css("background-image", '');
             this.coinRando = Math.floor((Math.random() * 7) + 1);
             this.player1.score += 1;
-            $('#score1').append('<br><img src="' + this.characters.coin + '"' + 'width="20px">' + '<br>');
+            $('#score1').append('<img src="' + this.characters.coin + '"' + 'width="23px" class="coin">');
             console.log(this.player1.score);
         }
         if(this.coinSpawns[this.coinRando] === this.player2.placement) {
@@ -101,7 +101,7 @@ function Game(player1character, player2character) {
             $('div#player2.gameboard div:nth-child(' + this.coinSpawns[this.coinRando] + ')').css("background-image", '');
             this.coinRando = Math.floor((Math.random() * 7) + 1);
             this.player2.score += 1;
-            $('#score2').append('<img src=' + this.characters.coin + '>');
+            $('#score2').append('<img src="' + this.characters.coin + '"' + 'width="23px" class="coin">');
             console.log(this.player2.score);
         }
     };
