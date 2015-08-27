@@ -233,7 +233,7 @@ function movement () {
             window.location.replace("player1Win.html");
 
         }
-        if ((game.player2.score >= 4) && (play === 2) && (game.player1.placement === game.track2.finishLine)) {
+        if ((game.player2.score >= 4) && (play === 2) && (game.player2.placement === game.track2.finishLine)) {
             window.location.replace("player2Win.html");
         }
     });
