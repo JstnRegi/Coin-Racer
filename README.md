@@ -3,17 +3,16 @@ A race against a foe to gather a certain number of coins to impress the princess
 
 Hello instructor or TA!
 
+Some things I've learned:
 Starting to get a hang of using jQuery and OOP. OOP really cleans up strangling unecessary variables.
 Css and html still needs to be heavily improved on in terms of classes overall format. Maybe also learn 
 how to use canvas.
 
 Game FEATURES and INSTRUCTIONS
 Game starts with players putting in their name. Then the players click on the characters they want.
-Then when both players are ready they lock in their characters with the button. After users are comfortable with their
-controls. They hit play.
-Be the first to make it to the princess first without getting hit by enemies.
+Then when both players are ready, they lock in their characters with the button. After users are comfortable with their controls. They hit play.
+Be the first to collect 4 coins and make your way to the princess' heart with your money! Be watchful at foes as they will send you to the beginning of the board!
 
 FEATURES to be ADDED
-It's called Coin-Racer but I still need to ADD COINS for the players to collect and bring to the princess. Then,
-make a 'scoredboard' to keep track of the coins collected and lost. Also, make the background of the player 'tracks'
-say 'practice your controls, then when ready hit  PLAY'
+I want to find a reasonable coin deduction system. Maybe not on every hit with a foe but maybe every two hits? Also, maybe add music and sound confirmation for getting hit, and picking up a coin? If I go through with a coin deduction system, implicitly show how many times they got hit before they lose another coin?
+Maybe find a way for them to fight eachother if they pick something up? And they are able to try and hit coins from their score.
