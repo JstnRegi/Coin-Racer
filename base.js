@@ -1,5 +1,5 @@
 //TODO: Add coins to spawn on map and collect them. Also make a score tracker!
-
+//test
 //counter that keeps buttons from getting clicked multiple times and glitching out the game
 var play = 0;
 var game;
