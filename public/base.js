@@ -230,11 +230,11 @@ function movement () {
 
         //finish line
         if ((game.player1.score >= 4) && (play === 2) && (game.player1.placement === game.track1.finishLine)) {
-            window.location.replace("/static/player1Win.html");
+            window.location.href = "/player1wins";
 
         }
         if ((game.player2.score >= 4) && (play === 2) && (game.player2.placement === game.track2.finishLine)) {
-            window.location.replace("/static/player2Win.html");
+            window.location.href = "/player2wins";
         }
     });
 }
