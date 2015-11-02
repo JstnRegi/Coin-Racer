@@ -1,16 +1,10 @@
 # Coin-Racer
 A race against a foe to gather a certain number of coins to impress the princess. Beware of what gets in your way!
 
-Hello instructor or TA!
-
-Some things I've learned:
-Starting to get a hang of using jQuery and OOP. OOP really cleans up strangling unecessary variables.
-Css and html still needs to be heavily improved on in terms of classes overall format. Maybe also learn 
-how to use canvas.
-
 Game FEATURES and INSTRUCTIONS
 Game starts with players putting in their name. Then the players click on the characters they want.
-Then when both players are ready, they lock in their characters with the button. After users are comfortable with their controls. They hit play.
+When both players are ready, they lock in their characters with the button. After users are comfortable with their controls. They hit play.
+
 Be the first to collect 4 coins and make your way to the princess' heart with your money! Be watchful at foes as they will send you to the beginning of the board!
 
 FEATURES to be ADDED
