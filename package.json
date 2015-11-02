@@ -1,0 +1,23 @@
+{
+  "name": "coinrace",
+  "version": "1.0.0",
+  "description": "A race against a foe to gather a certain number of coins to impress the princess. Beware of what gets in your way!",
+  "main": "base.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JstnRegi/Coin-Racer.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JstnRegi/Coin-Racer/issues"
+  },
+  "homepage": "https://github.com/JstnRegi/Coin-Racer#readme",
+  "dependencies": {
+    "express": "^4.13.3",
+    "nodemon": "^1.8.1"
+  }
+}
