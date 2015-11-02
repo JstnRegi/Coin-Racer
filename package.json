@@ -4,6 +4,7 @@
   "description": "A race against a foe to gather a certain number of coins to impress the princess. Beware of what gets in your way!",
   "main": "base.js",
   "scripts": {
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
