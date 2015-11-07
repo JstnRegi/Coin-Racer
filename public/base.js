@@ -365,6 +365,7 @@ function chooseYourChar() {
     }
     else if (play === 0) {
         $("#lock-characters").hide();
+        $("#game-wrapper").show();
         game = new Game(p1char, p2char);
         $('.choose-your-character1').remove();
         $('.choose-your-character2').remove();
