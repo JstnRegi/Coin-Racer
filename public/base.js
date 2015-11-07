@@ -22,16 +22,22 @@ var keys = {
 var p1char;
 var p2char;
 
-//asks for playernames BEFORE game start
-var p1name = prompt('Please type your game name', 'Player 1');
-var p2name = prompt('Please type your game name', 'Player 2');
+var p1name;
+var p2name;
 
 //prepends player names BEFORE game start
 function playerNames(p1name, p2name) {
     $('.choose-your-character1').prepend('<h2>' + p1name + ' click your character!' + '</h2>');
     $('.choose-your-character2').prepend('<h2>' + p2name + ' click your character!' + '</h2>');
 }
-playerNames(p1name, p2name);
+
+
+function chooseCharacters() {
+    //asks for playernames BEFORE game start
+    p1name = prompt('Please type your game name', 'Player 1');
+    p2name = prompt('Please type your game name', 'Player 2');
+    playerNames(p1name, p2name);
+}
 
 //random variables to choose from
 //I didnt know that random variables are saved in that point in time. And if called again
@@ -371,6 +377,12 @@ function chooseYourChar() {
         movement();
         play++;
     }
+}
+
+function characterSelect() {
+    $('#character-select').hide();
+    chooseCharacters();
+    $('.character-select-wrapper').show();
 }
 
 Game.prototype.init = function() {
