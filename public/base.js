@@ -360,6 +360,7 @@ $('.choose-your-character2 img').on('click', function () {
 });
 
 function chooseYourChar() {
+    $("#lock-characters").hide();
     if ((p1char && p2char) === undefined) {
         alert('Please choose a character!');
     }
