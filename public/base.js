@@ -360,11 +360,11 @@ $('.choose-your-character2 img').on('click', function () {
 });
 
 function chooseYourChar() {
-    $("#lock-characters").hide();
     if ((p1char && p2char) === undefined) {
         alert('Please choose a character!');
     }
     else if (play === 0) {
+        $("#lock-characters").hide();
         game = new Game(p1char, p2char);
         $('.choose-your-character1').remove();
         $('.choose-your-character2').remove();
