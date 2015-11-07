@@ -20,7 +20,8 @@ p {
     font-size: 10px;
 }
 
-.wrapper {
+#wrapper {
+    display: none;
     width: 500px;
     height: 150px;
     margin-left: auto;
@@ -173,6 +174,14 @@ h2 {
     height:31px;
     -webkit-text-stroke-width: .1px;
     -webkit-text-stroke-color: white;
+}
+
+.character-select-wrapper {
+    display: none;
+}
+
+#character-select {
+    
 }
 
 .coin {
