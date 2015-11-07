@@ -387,6 +387,10 @@ function characterSelect() {
     $('.character-select-wrapper').show();
 }
 
+function restart() {
+    window.location.href = "/";
+}
+
 Game.prototype.init = function() {
     if(play === 1) {
         enemySpawns();
