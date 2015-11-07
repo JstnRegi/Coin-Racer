@@ -20,10 +20,10 @@ p {
     font-size: 10px;
 }
 
-#wrapper {
+#game-wrapper {
     display: none;
-    width: 500px;
-    height: 150px;
+    width: 100%;
+    height: 100%;
     margin-left: auto;
     margin-right: auto;
 }
@@ -43,13 +43,14 @@ p {
 }
 
 #player1 {
-
     border: 1px solid red;
     width: 854px;
     height: 213px;
     background-color: white;
     margin-top: 20px;
     margin-bottom: 10px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 #player2 {
@@ -59,6 +60,8 @@ p {
     background-color: white;
     margin-top: 0px;
     margin-bottom: 3px;
+    margin-left: auto;
+    margin-right: auto;
 
 }
 div.top {
@@ -168,20 +171,18 @@ h2 {
 .scoreboard {
     font-family: 'Press Start 2P', cursive;
     color: black;
-    /*text-shadow: #ffffff 0px 1px 1px;*/
     position: relative;
     left: 90px;
-    height:31px;
+    height: 31px;
     -webkit-text-stroke-width: .1px;
     -webkit-text-stroke-color: white;
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .character-select-wrapper {
     display: none;
-}
-
-#character-select {
-    
 }
 
 .coin {
