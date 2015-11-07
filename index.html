@@ -62,15 +62,17 @@
     <br>
 
 </div>
+<br>
 
 
 
 
     <div id="game-wrapper">
 
-        <button onclick="game.init();" class="btn btn-default game-button">Play</button>
-        <a href="." type="button" class="btn btn-default game-button">Restart</a>
-       
+        <div id="game-button-wrapper">
+            <button onclick="game.init();" class="btn btn-default game-button">Play</button>
+            <button onclick="restart()" class="btn btn-default game-button">Restart</button>
+        </div>
 
         <div id="player1" class="gameboard">
         </div>
