@@ -3,10 +3,20 @@
 <head>
     <meta charset="utf-8">
     <title>CoinRace</title>
-     <link href='https://fonts.googleapis.com/css?family=Press+Start+2P' rel='stylesheet' type='text/css'>
+
+    <!-- font -->
+    <link href='https://fonts.googleapis.com/css?family=Press+Start+2P' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="/static/styles.css">
+
+    
+
+    <!-- javascripts -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore.js"></script>
+    
+
+    
    
 </head>
 <body>
@@ -27,7 +37,7 @@
         Player 2 Controls: <br><br> I = UP <br> K = DOWN <br> J = LEFT <br> L = RIGHT <br>
     </div>
 
-    <button onclick="characterSelect()" id="character-select">Character select!</button>
+    <button onclick="characterSelect()" id="character-select" class="btn btn-default">Character Select</button>
 
     <div class="character-select-wrapper">
         <div class="choose-your-character1">
@@ -42,7 +52,7 @@
             <img src="http://vignette4.wikia.nocookie.net/deathbattlefanon/images/4/4b/Goku_idle_by_tucker45855-d5qc2jm.gif/revision/latest?cb=20150307180427" height="50px" id="goku">
             <img src="http://archive.bnetweb.org/avatars/Gaming/MegaMan-Running.gif" height="30px" id="megaman">
         </div>
-        <button id="lock-characters" onclick="chooseYourChar()">Lock in your characters!</button>
+        <button id="lock-characters" onclick="chooseYourChar()" class="btn btn-default">Lock in Characters</button>
     </div>
 
     
@@ -54,7 +64,14 @@
 </div>
 
 
+
+
     <div id="game-wrapper">
+
+        <button onclick="game.init();" class="btn btn-default game-button">Play</button>
+        <a href="." type="button" class="btn btn-default game-button">Restart</a>
+       
+
         <div id="player1" class="gameboard">
         </div>
 
@@ -70,13 +87,6 @@
         </div>
 
         <script src="/static/base.js"></script>
-        <button onclick="game.init();">Play</button>
-        <button onclick="restart()">Restart</button>
-        <script>
-            function restart() {
-                window.location.replace("index.html");
-            }
-        </script>
     </div>
 <!--</div>-->
 </body>

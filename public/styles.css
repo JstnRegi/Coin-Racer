@@ -1,6 +1,12 @@
 html {
     background: url(http://7-themes.com/data_images/out/13/6812737-super-mario-wallpaper.jpg) center;
 }
+
+body {
+    background-color: transparent;
+}
+
+
 h1#main {
     font-family: 'Press Start 2P', cursive;
     text-align: center;
@@ -44,7 +50,7 @@ p {
 
 #player1 {
     border: 1px solid red;
-    width: 854px;
+    width: 808px;
     height: 213px;
     background-color: white;
     margin-top: 20px;
@@ -55,7 +61,7 @@ p {
 
 #player2 {
     border: 1px solid blue;
-    width: 854px;
+    width: 808px;
     height: 215px;
     background-color: white;
     margin-top: 0px;
@@ -176,7 +182,7 @@ h2 {
     height: 31px;
     -webkit-text-stroke-width: .1px;
     -webkit-text-stroke-color: white;
-    width: 70%;
+    width: 808px;
     margin-left: auto;
     margin-right: auto;
 }
@@ -187,4 +193,23 @@ h2 {
 
 .coin {
     margin-right: 3px;
+}
+
+#character-select {
+    width: 200px;
+    height: 40px;
+    font-family: Helvetica;
+    font-size: 16px;
+}
+
+#lock-characters {
+    width: 200px;
+    margin-top: 20px;
+    font-size: 15px;
+    height: 46px;
+}
+
+.game-button {
+    width: 90px;
+    height: 33px;
 }
