@@ -65,7 +65,7 @@ function Game(player1character, player2character) {
         coin: "http://www.snesmaps.com/maps/SuperMarioWorld/sprites/Coin.gif",
         peach: 'http://orig11.deviantart.net/75bd/f/2013/034/d/d/princess_peach_sprite_by_peachkirbycutie-d5tqjs7.gif'
     },
-    this.winningScore = 4,
+    this.winningScore = 5,
     this.player1 = new Player(keys.p1Keys.aKey, keys.p1Keys.wKey, keys.p1Keys.sKey, keys.p1Keys.dKey, this.characters[player1character]);
     this.player2 = new Player(keys.p2Keys.jKey, keys.p2Keys.iKey, keys.p2Keys.kKey, keys.p2Keys.lKey, this.characters[player2character]);
     this.track1 = new Track('player1');
@@ -105,7 +105,7 @@ function Game(player1character, player2character) {
             this.coinRando = Math.floor((Math.random() * 7) + 1);
             this.player1.score += 1;
             $('#score1').append('<img src="' + this.characters.coin + '"' + 'width="23px" class="coin">');
-            if(this.player1.score === 4) {
+            if(this.player1.score === this.winningScore) {
                 $('div#player1.gameboard div:nth-child(' + 60 + ')').css("content", "");
                 $('div#player1.gameboard div:nth-child(' + 60 + ')').css("content", "url(" + this.characters.peach + ")");
             }
@@ -116,7 +116,7 @@ function Game(player1character, player2character) {
             this.coinRando = Math.floor((Math.random() * 7) + 1);
             this.player2.score += 1;
             $('#score2').append('<img src="' + this.characters.coin + '"' + 'width="23px" class="coin">');
-            if(this.player2.score === 4) {
+            if(this.player2.score === this.winningScore) {
                 $('div#player2.gameboard div:nth-child(' + 60 + ')').css("content", "");
                 $('div#player2.gameboard div:nth-child(' + 60 + ')').css("content", "url(" + this.characters.peach + ")");
             }
@@ -235,11 +235,11 @@ function movement () {
         playerMovement(game.player2, game.track2.playerId, game.player2.movementKeys, game.track2);
 
         //finish line
-        if ((game.player1.score >= 4) && (play === 2) && (game.player1.placement === game.track1.finishLine)) {
+        if ((game.player1.score >= game.winningScore) && (play === 2) && (game.player1.placement === game.track1.finishLine)) {
             window.location.href = "/player1wins";
 
         }
-        if ((game.player2.score >= 4) && (play === 2) && (game.player2.placement === game.track2.finishLine)) {
+        if ((game.player2.score >= game.winningScore) && (play === 2) && (game.player2.placement === game.track2.finishLine)) {
             window.location.href = "/player2wins";
         }
     });
