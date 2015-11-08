@@ -206,8 +206,10 @@ div.instructions p, .player1, .player2, .character-instruction {
     width: 100%;
 }
 
-.hide {
-    display: none;
+.player-win {
+    text-align: center;
+    font-size: 30px;
+    font-family: 'Press Start 2P', cursive;
 }
 
 #character-select {
@@ -236,3 +238,4 @@ div.instructions p, .player1, .player2, .character-instruction {
     height: 42px;
     font-size: 16px;
 }
+
