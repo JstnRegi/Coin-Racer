@@ -371,6 +371,8 @@ function chooseYourChar() {
         $('.choose-your-character2').remove();
         $('p').remove();
         $('#character-select').remove();
+        $('.in-game-instructions').show();
+        $('.movement-instructions').show();
         $('.instructions').css('margin-bottom', '40px');
         game.track1.makeTrack(game.track1.playerId);
         game.track2.makeTrack(game.track2.playerId);
@@ -393,6 +395,7 @@ function restart() {
 
 Game.prototype.init = function() {
     if(play === 1) {
+        $('.movement-instructions').hide();
         enemySpawns();
         remImg(game.player1.placement, game.track1.playerId);
         remImg(game.player2.placement, game.track2.playerId);

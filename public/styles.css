@@ -19,7 +19,7 @@ h1#instruc {
     text-align: center;
 }
 
-p {
+p, .character-instruction, .in-game-instructions, .movement-instructions {
     font-family: 'Press Start 2P', cursive;
     width: 200px;
     display: inline;
@@ -70,6 +70,7 @@ p {
     margin-right: auto;
 
 }
+
 div.top {
     border-top: 1px solid black;
 }
@@ -195,8 +196,18 @@ h2 {
     margin-right: 3px;
 }
 
-div.instructions p, .player1, .player2 {
+div.instructions p, .player1, .player2, .character-instruction {
     font-size: .8vw;
+}
+
+.in-game-instructions, .movement-instructions {
+    font-size: 12px;
+    display: none;
+    width: 100%;
+}
+
+.hide {
+    display: none;
 }
 
 #character-select {
