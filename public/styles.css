@@ -1,5 +1,6 @@
 html {
-    background: url(http://7-themes.com/data_images/out/13/6812737-super-mario-wallpaper.jpg) center;
+    background: url('mariobackground.png') center no-repeat;
+    background-size: cover;
 }
 
 body {
